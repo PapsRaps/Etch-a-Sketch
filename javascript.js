@@ -23,13 +23,13 @@ for(let i = 0; i < numberOfGrids; i++){
 
 
 Array.from(grid).forEach(square => {
-    square.addEventListener('mouseenter', square =>{
-        square.target.style.backgroundColor = 'black'
-    })
+    square.addEventListener('mouseenter', changeSquareColor)
 })
 
-const addButton = document.querySelector('button');
-addButton.addEventListener('click', getSize)
+const changeButton = document.getElementById('changeSize')
+const resetButton = document.getElementById('reset')
+changeButton.addEventListener('click', getSize)
+resetButton.addEventListener('click', () => changeGrid(numberOfGrids))
 
 function getSize(){
     let userInput = Number(prompt('How many squares per side?',''));
@@ -45,16 +45,18 @@ function getSize(){
 
 function changeGrid(size){
     gridContainer.replaceChildren();
+    numberOfGrids = size;
 
-    for(let i = 0; i < size; i++){
-        for(let j = 0; j < size; j++){
+    for(let i = 0; i < numberOfGrids; i++){
+        for(let j = 0; j < numberOfGrids; j++){
             const square = document.createElement('div');
 
-            const gridSizePixel = (containerSize/size)
+            const gridSizePixel = (containerSize/numberOfGrids)
 
             square.classList.add('gridSquares');
             square.style.width = `${gridSizePixel}px`
             square.style.height = `${gridSizePixel}px`
+            square.style.opacity = '1';
 
             gridContainer.appendChild(square);
             grid.push(square);
@@ -62,8 +64,14 @@ function changeGrid(size){
     }
 
     Array.from(grid).forEach(square => {
-        square.addEventListener('mouseenter', square =>{
-            square.target.style.backgroundColor = 'black'
-        })
+        square.addEventListener('mouseenter',changeSquareColor)
     })
+}
+
+function changeSquareColor(square){
+    const red = Math.floor(Math.random() * 255);
+    const green = Math.floor(Math.random() * 255);
+    const blue = Math.floor(Math.random() * 255);
+
+    square.target.style.backgroundColor = `rgb(${red} ${green} ${blue})`
 }
