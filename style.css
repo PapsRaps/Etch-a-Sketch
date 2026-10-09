@@ -1,0 +1,30 @@
+body{
+    box-sizing: content-box;
+}
+
+#mainContainer{
+    display: flex;
+    justify-content: center;
+}
+
+#container{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    border: 2px solid black;
+}
+
+button{
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0 12px;
+    line-height: 20px;
+    height: 30px;
+    max-height: 30px;
+    background: #566AE5;
+    font-weight: 700;
+    border: 0;
+    color: #FFFFFF;
+}
